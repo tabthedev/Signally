@@ -1,5 +1,5 @@
 name = "tabthedev/signally"
-version = "0.1.0"
+version = "0.1.1"
 description = "A library which can generate class like RBXScriptSignal but custom event and more methods"
 authors = ["tabthedev"]
 repository = "https://github.com/tabthedev/Signally"
@@ -14,6 +14,7 @@ includes = [
 [target]
 environment = "luau"
 lib = "src/init.luau"
+build_files = ["src"]
 
 [indices]
 default = "https://github.com/pesde-pkg/index"
