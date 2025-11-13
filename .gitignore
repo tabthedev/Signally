@@ -1,6 +1,7 @@
 # pesde packages
 *_packages
 .pesde
+/dist
 
 # Project place file
 /Signally.rbxl
