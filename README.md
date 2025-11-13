@@ -11,12 +11,12 @@ psede install
 
 ## Types
 
-connectionCallback<V...>
+(private) connectionCallback<V...>
 ```luau
 type connectionCallback<V...> = (V...)->()
 ```
 
-Connection<V...>
+(public) Connection<V...>
 ```luau
 type Connection<V...> = {
 	Connected: boolean,
@@ -25,7 +25,7 @@ type Connection<V...> = {
 }
 ```
 
-Signal<V...>
+(public) Signal<V...>
 ```luau
 type Signal<V...> = {
 	Connections: { Connection<V...> },
