@@ -9,7 +9,7 @@ type __meta__connection<V...> = {
 	__index: __meta__connection<V...>,
 	__call: (V...)->(),
 	new: ((connectionsFromSignal: {Connection<V...>}, callback: connectionCallback<V...>)->Connection<V...>),
-	
+
 	Disconnect: (self: Connection<V...>)->()
 }
 export type Connection<V...> = typeof(setmetatable({} :: {
@@ -25,7 +25,7 @@ export type Connection<V...> = typeof(setmetatable({} :: {
 type __meta__signal<V...> = {
 	__index: __meta__signal<V...>,
 	new: ()->Signal<V...>,
-	
+
 	Connect: (self: Signal<V...>, callback: connectionCallback<V...>)->Connection<V...>,
 	Once: (self: Signal<V...>, callback: connectionCallback<V...>)->Connection<V...>,
 	Wait: (self: Signal<V...>)->V...,
@@ -33,7 +33,7 @@ type __meta__signal<V...> = {
 	DisconnectAll: (self: Signal<V...>)->(),
 	CloseAllYields: (self: Signal<V...>)->(),
 	KillAllEffects: (self: Signal<V...>)->(),
-	
+
 	Fire: (self: Signal<V...>, V...)->()
 }
 export type Signal<V...> = typeof(setmetatable({} :: {
@@ -47,30 +47,30 @@ export type Signal<V...> = typeof(setmetatable({} :: {
 ---- Struct : Connection
 ----------------------
 
-local Connection = {} :: __meta__connection<any> 
---Connection.__index = Connection
---Connection.__call = function() end
+local Connection = {} :: __meta__connection<...any>
+Connection.__index = Connection
+Connection.__call = function() end
 
 function Connection.new(connectionsFromSignal, callback)
 	local meta = table.clone(Connection)
 	meta.__index = meta
 	meta.__call = callback
 	--print(meta)
-	
+
 	local self = setmetatable({connectionsFromSignal, Connected = true}, meta)
 	table.insert(connectionsFromSignal, self)
-	
+
 	return self
 end
 
 function Connection:Disconnect()
 	self.Connected = false
-	
+
 	local ind = table.find(self[1], self)
 	if not ind then
 		return
 	end
-	
+
 	table.remove(self[1], ind)
 end
 
@@ -78,7 +78,7 @@ end
 ---- Struct : Signal
 ----------------------
 
-local Signal = {} :: __meta__signal<any>
+local Signal = {} :: __meta__signal<...any>
 Signal.__index = Signal
 
 --Creates new signal object
@@ -124,9 +124,9 @@ end
 --Signal 개체가 :Fire(인수?)에 의해 게시될 때 까지 기다린 후, 그 (인수?)를 반환함
 function Signal:Wait()
 	local runningThread = coroutine.running()
-	
+
 	table.insert(self.Yields, runningThread)
-	
+
 	return coroutine.yield()
 end
 
@@ -167,5 +167,7 @@ function Signal:KillAllEffects()
 	self:DisconnectAll()
 	self:CloseAllYields()
 end
+
+
 
 return Signal

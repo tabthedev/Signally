@@ -11,7 +11,37 @@ psede install
 
 ## Types
 
+connectionCallback<V...>
+```luau
+type connectionCallback<V...> = (V...)->()
+```
+
+Connection<V...>
+```luau
+type Connection<V...> = {
+	Connected: boolean,
+    
+	Disconnect: (self: Connection<V...>)->()
+}
+```
+
 Signal<V...>
+```luau
+type Signal<V...> = {
+	Connections: { Connection<V...> },
+	Yields: { thread },
+
+    Connect: (self: Signal<V...>, callback: connectionCallback<V...>)->Connection<V...>,
+	Once: (self: Signal<V...>, callback: connectionCallback<V...>)->Connection<V...>,
+	Wait: (self: Signal<V...>)->V...,
+
+	DisconnectAll: (self: Signal<V...>)->(),
+	CloseAllYields: (self: Signal<V...>)->(),
+	KillAllEffects: (self: Signal<V...>)->(),
+
+	Fire: (self: Signal<V...>, V...)->()
+}
+```
 
 
 ## Usage
