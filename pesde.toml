@@ -1,0 +1,32 @@
+name = "tabthedev/signally"
+version = "0.1.1"
+description = "A library which can generate class like RBXScriptSignal but custom event and more methods"
+authors = ["tabthedev"]
+repository = "https://github.com/tabthedev/Signally"
+license = "MIT"
+includes = [
+  "pesde.toml",
+  "README.md",
+  "LICENSE",
+  "src/**/*.luau",
+]
+
+[target]
+environment = "luau"
+lib = "src/init.luau"
+build_files = ["src"]
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[scripts]
+roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau"
+sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
+
+[dev_dependencies]
+scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
+rojo = { name = "pesde/rojo", version = "^7.5.1", target = "lune" }
+
+[engines]
+pesde = "^0.7.0"
+lune = "^0.10.2"
