@@ -5,7 +5,10 @@
 
     "ReplicatedStorage": {
       "Packages": {
+        "$className": "Folder",
+        "Signally": {
         "$path": "src"
+        }
       }
     },
 

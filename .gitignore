@@ -1,3 +1,7 @@
+# pesde packages
+*_packages
+.pesde
+
 # Project place file
 /Signally.rbxl
 /Signally.rbxlx
