@@ -1,5 +1,7 @@
 # Signally
-A library which can generate class like RBXScriptSignal but custom event and more methods
+A luau library which can generate class like RBXScriptSignal but custom event and more methods
+<br><br>
+Inspired by [typed-remote](https://github.com/Sleitnick/RbxUtil/blob/main/modules/typed-remote/init.luau) from [Sleitnick/RbxUtil](https://github.com/Sleitnick/RbxUtil)
 
 ## Install
 
@@ -63,3 +65,5 @@ Overload Agrument(s) Signal
 ```luau
 local signal = signally.new() :: Signal<number, string> & Signal<boolean>
 ```
+
+
