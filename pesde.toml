@@ -1,6 +1,6 @@
 name = "tabthedev/signally"
 version = "0.1.8"
-description = "A library which can generate class like RBXScriptSignal but custom event and more methods"
+description = "A luau library which can generate class like RBXScriptSignal but custom event and more methods"
 authors = ["tabthedev"]
 repository = "https://github.com/tabthedev/Signally"
 license = "MIT"
