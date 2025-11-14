@@ -7,13 +7,13 @@
 type connectionCallback<V...> = (V...)->()
 type __meta__connection<V...> = {
 	__index: __meta__connection<V...>,
-	__call: (V...)->(),
 	new: ((connectionsFromSignal: {Connection<V...>}, callback: connectionCallback<V...>)->Connection<V...>),
 
 	Disconnect: (self: Connection<V...>)->()
 }
 export type Connection<V...> = typeof(setmetatable({} :: {
 	Connected: boolean,
+	__call: (V...)->(),
 }, {} :: __meta__connection<V...>))
 
 
@@ -49,15 +49,13 @@ export type Signal<V...> = typeof(setmetatable({} :: {
 
 local Connection = {} :: __meta__connection<...any>
 Connection.__index = Connection
-Connection.__call = function() end
 
 function Connection.new(connectionsFromSignal, callback)
 	local meta = table.clone(Connection)
 	meta.__index = meta
-	meta.__call = callback
 	--print(meta)
 
-	local self = setmetatable({connectionsFromSignal, Connected = true}, meta)
+	local self = setmetatable({connectionsFromSignal, Connected = true, __call = callback}, meta)
 	table.insert(connectionsFromSignal, self)
 
 	return self
@@ -167,7 +165,5 @@ function Signal:KillAllEffects()
 	self:DisconnectAll()
 	self:CloseAllYields()
 end
-
-
 
 return Signal
