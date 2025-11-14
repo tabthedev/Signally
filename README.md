@@ -8,7 +8,7 @@ Inspired by [typed-remote](https://github.com/Sleitnick/RbxUtil/blob/main/module
 ```bash
 pesde add tabthedev/signally
 
-psede install
+pesde install
 ```
 
 ## Types
